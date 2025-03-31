@@ -1,5 +1,3 @@
-import { NextRequest } from "next/server";
-import { headers } from "next/headers";
 import Link from "next/link";
 
 import getSupabase from "@/app/utils/supabase";
@@ -8,17 +6,9 @@ import { Download, Home } from "lucide-react";
 
 async function Page({ params }) {
   const supabase = getSupabase();
-  let request = null;
 
   const par = await params;
   const url = await supabase.from("shared_cards").select().eq("id", par.id);
-
-  const headersList = await headers();
-  const fullUrl = headersList.get("host") || "";
-
-  if (fullUrl) {
-    request = new NextRequest(fullUrl);
-  }
 
   return (
     <div className="bg-blue-50 h-full w-full">
@@ -33,18 +23,14 @@ async function Page({ params }) {
             className="rounded-lg mb-4"
           />
 
-          <p className="text-sm mt-4"> Shareable Link: {fullUrl}</p>
+          <p className="text-sm mt-4"> Shareable Link:</p>
           <div className="bg-blue-200 text-gray-800 p-2 rounded w-full">
-            {/* <p className="text-gray-700">{`https://${request.url.toString()}/view-card/${
-              par.id
-            }`}</p> */}
+            <p className="text-gray-700">{`https://brilliant-brigadeiros-501566.netlify.app/view-card/${par.id}`}</p>
           </div>
           <div className="flex items-center justify-start rounded flex-wrap mt-2">
-            {/* <CopyToClipboard
-              text={`https://${request.referrer.toString()}/view-card/${
-                par.id
-              }`}
-            /> */}
+            <CopyToClipboard
+              text={`https://brilliant-brigadeiros-501566.netlify.app/view-card/${par.id}`}
+            />
 
             <Link
               href={url?.data[0]?.preview_url}

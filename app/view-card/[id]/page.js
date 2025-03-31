@@ -33,10 +33,7 @@ async function Page({ params }) {
             className="rounded-lg mb-4"
           />
 
-          <p className="text-sm mt-4">
-            {" "}
-            Shareable Link: {request.url.toString()}
-          </p>
+          <p className="text-sm mt-4"> Shareable Link: {fullUrl}</p>
           <div className="bg-blue-200 text-gray-800 p-2 rounded w-full">
             {/* <p className="text-gray-700">{`https://${request.url.toString()}/view-card/${
               par.id

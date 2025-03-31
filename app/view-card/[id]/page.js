@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import Link from "next/link";
 
 import getSupabase from "@/app/utils/supabase";
+import CopyToClipboard from "@/app/components/CopyToClipboard";
+import { Download, Home } from "lucide-react";
 
 async function Page({ params }) {
   const supabase = getSupabase();
@@ -32,16 +34,26 @@ async function Page({ params }) {
           />
 
           <p className="text-sm mt-4"> Shareable Link: </p>
-          <div className="bg-blue-200 text-gray-800 p-2 rounded ">
-            <p className="text-gray-700">{request.nextUrl.toString()}</p>
+          <div className="bg-blue-200 text-gray-800 p-2 rounded w-full">
+            <p className="text-gray-700">{request?.nextUrl?.toString()}</p>
+          </div>
+          <div className="flex items-center justify-start rounded flex-wrap mt-2">
+            <CopyToClipboard text={request?.nextUrl?.toString()} />
+
+            <Link
+              href={url?.data[0]?.preview_url}
+              className="bg-yellow-200 p-2 m-1 rounded"
+            >
+              <Download />
+            </Link>
+            <Link
+              href="/"
+              className="bg-lime-200 text-gray-800 p-2 rounded m-1"
+            >
+              <Home />
+            </Link>
           </div>
         </div>
-        <Link
-          href="/"
-          className="bg-fuchsia-200 text-gray-800 p-2 rounded mt-8"
-        >
-          Go to Homepage
-        </Link>
       </div>
     </div>
   );

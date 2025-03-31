@@ -35,22 +35,26 @@ async function Page({ params }) {
 
           <p className="text-sm mt-4"> Shareable Link: </p>
           <div className="bg-blue-200 text-gray-800 p-2 rounded w-full">
-            <p className="text-gray-700">{request?.nextUrl?.toString()}</p>
+            <p className="text-gray-700">
+              {request?.nextUrl.toString() + request?.nextUrl.pathname}
+            </p>
           </div>
           <div className="flex items-center justify-start rounded flex-wrap mt-2">
-            <CopyToClipboard text={request?.nextUrl?.toString()} />
+            <CopyToClipboard
+              text={request?.nextUrl.toString() + request?.nextUrl.pathname}
+            />
 
             <Link
               href={url?.data[0]?.preview_url}
-              className="bg-yellow-200 p-2 m-1 rounded"
+              className="bg-yellow-200 p-2 m-1 rounded flex items-center"
             >
-              <Download />
+              <Download /> Download
             </Link>
             <Link
               href="/"
-              className="bg-lime-200 text-gray-800 p-2 rounded m-1"
+              className="bg-lime-200 text-gray-800 p-2 rounded m-1 flex items-center"
             >
-              <Home />
+              <Home /> Home
             </Link>
           </div>
         </div>

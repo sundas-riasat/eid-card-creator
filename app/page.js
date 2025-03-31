@@ -293,12 +293,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
-        <title>Eid Card Creator</title>
+        <title className="text-gray-700">Eid Card Creator</title>
         <meta
           name="description"
           content="Create and share customizable Eid cards"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Navbar />
@@ -307,7 +306,7 @@ export default function Home() {
         {!editMode ? (
           <div className="space-y-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-emerald-700 mb-2">
+              <h1 className="text-4xl font-bold text-gray-700 mb-2">
                 Eid Card Creator
               </h1>
               <p className="text-gray-600 text-lg">

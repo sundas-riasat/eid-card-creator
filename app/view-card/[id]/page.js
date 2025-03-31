@@ -14,10 +14,11 @@ async function Page({ params }) {
   const url = await supabase.from("shared_cards").select().eq("id", par.id);
 
   const headersList = await headers();
-  const referer = headersList.get("referer");
+  const domain = headersList.get("host") || "";
+  const fullUrl = headersList.get("referer") || "";
 
-  if (referer) {
-    request = new NextRequest(referer);
+  if (fullUrl) {
+    request = new NextRequest(fullUrl);
   }
 
   return (
@@ -35,9 +36,7 @@ async function Page({ params }) {
 
           <p className="text-sm mt-4"> Shareable Link: </p>
           <div className="bg-blue-200 text-gray-800 p-2 rounded w-full">
-            <p className="text-gray-700">
-              {request?.nextUrl.toString() + request?.nextUrl.pathname}
-            </p>
+            <p className="text-gray-700">{fullUrl}</p>
           </div>
           <div className="flex items-center justify-start rounded flex-wrap mt-2">
             <CopyToClipboard
